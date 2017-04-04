@@ -48,46 +48,53 @@
     </div>
 
     <form class="form-horizontal" action="/add_employee">
-      <div class="form-group">
+      <% if @employee.errors.any? %>
+        <div class="alert alert-danger" role="alert">
+          <strong>
+          <%= @employee.errors.full_messages.join(" and ") %>
+          </strong>
+        </div>
+      <% end %>
+      <div class="form-group <%= @employee.errors[:name].any? ? "has-error" : "" %>">
         <label for="input_name" class="col-sm-2 control-label">Name:</label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" name="name" placeholder="Name">
+          <input type="text" class="form-control" name="name" value="<%= @employee["name"] %>" placeholder="Name">
         </div>
       </div>
-      <div class="form-group">
+      <div class="form-group <%= @employee.errors[:phone].any? ? "has-error" : "" %>">
         <label for="input_phone" class="col-sm-2 control-label">Phone Number:</label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" name="phone" placeholder="Phone Number">
+          <input type="text" class="form-control" name="phone" value="<%= @employee["phone"] %>" placeholder="Phone Number">
         </div>
       </div>
       <div class="form-group">
         <label for="input_address" class="col-sm-2 control-label">Address:</label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" name="address" placeholder="Address">
+          <input type="text" class="form-control" name="address" value="<%= @employee["address"] %>" placeholder="Address">
         </div>
       </div>
-      <div class="form-group">
+      <div class="form-group <%= @employee.errors[:position].any? ? "has-error" : "" %>">
         <label for="input_position" class="col-sm-2 control-label">Position:</label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" name="position" placeholder="Position">
+          <input type="text" class="form-control" name="position" value="<%= @employee["position"] %>" placeholder="Position">
         </div>
       </div>
       <div class="form-group">
-        <label for="input_salary" class="col-sm-2 control-label">Salary:</label>
+        <label for="input_salary <%= @employee.errors[:salary].any? ? "has-error" : "" %>" class="col-sm-2 control-label">Salary:</label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" name="salary" placeholder="Salary">
+          <input type="text" class="form-control" name="salary" value="<%= @employee["salary"] %>" placeholder="Salary">
         </div>
       </div>
       <div class="form-group">
         <label for="input_github" class="col-sm-2 control-label">GitHub Account:</label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" name="github" placeholder="GitHub Account">
+          <input type="text" class="form-control" name="github" value="<%= @employee["github"] %>" placeholder="GitHub Account">
         </div>
       </div>
       <div class="form-group">
         <label for="input_slack" class="col-sm-2 control-label">Slack Account:</label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" name="slack" placeholder="Slack Account">
+          <input type="text" class="form-control" name="slack" value="<%= @employee["slack"] %>" placeholder="Slack Account">
         </div>
       </div>
       <div class="form-group">

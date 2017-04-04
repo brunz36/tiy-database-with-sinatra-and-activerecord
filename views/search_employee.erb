@@ -43,32 +43,49 @@
       </div>
     </nav>
 
-      <div class="table-responsive">
-        <table class="table table-hover">
-          <thead>
-            <th>Name</th>
-            <th>Phone Number</th>
-            <th>Address</th>
-            <th>Position</th>
-            <th>Salary</th>
-            <th>GitHub Account</th>
-            <th>Slack Account</th>
-          </thead>
-          <tbody>
-            <% @employees.each do |employee| %>
-              <tr>
-                <td><a href="/show_employee?id=<%= employee.id %>"><%= employee.name %></a></td>
-                <td><a href="/show_employee?id=<%= employee.id %>"><%= employee.phone %></td>
-                <td><a href="/show_employee?id=<%= employee.id %>"><%= employee.address %></td>
-                <td><a href="/show_employee?id=<%= employee.id %>"><%= employee.position %></td>
-                <td><a href="/show_employee?id=<%= employee.id %>"><%= employee.salary %></td>
-                <td><a href="/show_employee?id=<%= employee.id %>"><%= employee.github %></td>
-                <td><a href="/show_employee?id=<%= employee.id %>"><%= employee.slack %></td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
+    <div class="media">
+      <div class="media-body">
+        <h1><strong>The Iron Yard</strong> Employee Database List</h1>
       </div>
+      <div class="media-right media-middle">
+        <a href="/new_employee" class="btn btn-md btn-default" role="button">Add New Employee</a>
+      </div>
+    </div>
+
+    <form class="form-inline well well-sm" action="/search_employee">
+      <div class="form-group">
+        <span><strong>Search for Employee by Name, Slack or GitHub Account </strong></span>
+        <input type="search" class="form-control" name="search" placeholder="Search">
+         <button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+      </div>
+    </form>
+
+    <div class="table-responsive">
+      <table class="table table-hover">
+        <thead>
+          <th>Name</th>
+          <th>Phone Number</th>
+          <th>Address</th>
+          <th>Position</th>
+          <th>Salary</th>
+          <th>GitHub Account</th>
+          <th>Slack Account</th>
+        </thead>
+        <tbody>
+          <% @employees.each do |employee| %>
+            <tr>
+              <td><a href="/show_employee?id=<%= employee.id %>"><%= employee.name %></a></td>
+              <td><a href="/show_employee?id=<%= employee.id %>"><%= employee.phone %></td>
+              <td><a href="/show_employee?id=<%= employee.id %>"><%= employee.address %></td>
+              <td><a href="/show_employee?id=<%= employee.id %>"><%= employee.position %></td>
+              <td><a href="/show_employee?id=<%= employee.id %>"><%= employee.salary %></td>
+              <td><a href="/show_employee?id=<%= employee.id %>"><%= employee.github %></td>
+              <td><a href="/show_employee?id=<%= employee.id %>"><%= employee.slack %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
 
   </div>
 

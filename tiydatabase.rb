@@ -12,6 +12,11 @@ ActiveRecord::Base.establish_connection(
 
 class Employee < ActiveRecord::Base
   self.primary_key = "id"
+  validates :name, presence: true
+  validates :phone, numericality: { only_integer: true }
+  validates :phone, length: { is: 10 }
+  validates :salary, numericality: true
+  validates :position, inclusion: { in: %w{Instructor Student}, message: "%{value} must be Instructor or Student." }
 end
 
 class Course < ActiveRecord::Base
@@ -39,22 +44,35 @@ get '/show_employee' do
 end
 
 get '/new_employee' do
+  @employee = Employee.new
+
   erb :new_employee
 end
 
 get '/add_employee' do
-  Employee.create(params)
+  @employee = Employee.create(params)
 
-  redirect('/employees')
+  if @employee.valid?
+    redirect('/employees')
+  else
+    erb :new_employee
+  end
 end
 
 get '/search_employee' do
   search = params["search"]
 
-  @employees = Employee.where("name like ? or github = ? or slack = ?", "%#{search}%", search, search)
-  # The $ not working...had to go to ? -- YES!!!!!
+  if search == ""
+    redirect('/employees')
+  end
 
-  erb :search_employee
+  @employees = Employee.where("name like ? or github = ? or slack = ?", "%#{search}%", search, search)
+
+  if @employees.count < 1
+    redirect('/')
+  else
+    erb :search_employee
+  end
 end
 
 get '/edit_employee' do
@@ -70,7 +88,11 @@ get '/append_employee' do
 
   @employee.update_attributes(params)
 
-  erb :show_employee
+  if @employee.valid?
+    redirect to("/show_employee?id=#{@employee.id}")
+  else
+    erb :edit_employee
+  end
 end
 
 get '/delete_employee' do
@@ -96,8 +118,7 @@ end
 get '/search_course' do
   search = params["search"]
 
-  @courses = Course.where("name LIKE '%#{search}%'")
-  # NOT CORRECT !!!!!!!!!!!!!!!!!!!!!!!
+  @courses = Course.where("name LIKE ?", "%#{search}%")
 
   erb :search_course
 end
