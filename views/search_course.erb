@@ -43,21 +43,40 @@
       </div>
     </nav>
 
+    <div class="media">
+      <div class="media-body">
+        <h1><strong>The Iron Yard</strong> Courses Database List</h1>
+      </div>
+      <div class="media-right media-middle">
+        <a href="/new_course" class="btn btn-md btn-default" role="button">Add New Course</a>
+      </div>
+    </div>
+
+    <form class="form-inline well well-sm" action="/search_course">
+      <div class="form-group">
+        <span><strong>Search for Course by Name </strong></span>
+        <input type="search" class="form-control" name="search" placeholder="Search">
+         <button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+      </div>
+    </form>
+
     <div class="table-responsive">
       <table class="table table-hover">
         <thead>
           <th>Name</th>
-          <th>Programming Languages</th>
-          <th>Price</th>
-          <th>Cohort Number</th>
+          <th>Subject</th>
+          <th>Start Date</th>
+          <th>End Date</th>
+          <th>Intensive</th>
         </thead>
         <tbody>
           <% @courses.each do |course| %>
             <tr>
               <td><a href="/show_course?id=<%= course['id'] %>"><%= course["name"] %></a></td>
-              <td><%= course["language"] %></td>
-              <td><%= course["price"] %></td>
-              <td><%= course["cohort"] %></td>
+              <td><%= course["subject"] %></td>
+              <td><%= course["start_date"] %></td>
+              <td><%= course["end_date"] %></td>
+              <td><%= course["intensive"] %></td>
             </tr>
           <% end %>
         </tbody>

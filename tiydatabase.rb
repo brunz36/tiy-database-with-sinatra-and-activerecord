@@ -116,7 +116,11 @@ get '/search_course' do
 
   @courses = Course.where("name LIKE ?", "%#{search}%")
 
-  erb :search_course
+  if @courses.count < 1
+    redirect('/')
+  else
+    erb :search_course
+  end
 end
 
 get '/new_course' do
