@@ -52,32 +52,38 @@
         <div class="form-group">
           <label for="input_name" class="col-sm-2 control-label">Name:</label>
           <div class="col-sm-10">
-            <input type="text" class="form-control" name="name" value="<%= @course["name"] %>">
+            <input type="text" class="form-control" name="name" value="<%= @course["name"] %>"placeholder="Name">
           </div>
         </div>
         <div class="form-group">
-          <label for="input_language" class="col-sm-2 control-label">Programming Language:</label>
+          <label for="input_subject" class="col-sm-2 control-label">Subject:</label>
           <div class="col-sm-10">
-            <input type="text" class="form-control" name="language" value="<%= @course["language"] %>">
+            <input type="text" class="form-control" name="subject" value="<%= @course["subject"] %>" placeholder="Subject">
           </div>
         </div>
         <div class="form-group">
-          <label for="input_price" class="col-sm-2 control-label">Price:</label>
+          <label for="input_start_date" class="col-sm-2 control-label">Start Date:</label>
           <div class="col-sm-10">
-            <input type="text" class="form-control" name="price" value="<%= @course["price"] %>">
+            <input type="date" class="form-control" name="start_date" value="<%= @course["start_date"] %>" placeholder="Start Date">
           </div>
         </div>
         <div class="form-group">
-          <label for="input_cohort" class="col-sm-2 control-label">Cohort Number:</label>
+          <label for="input_end_date" class="col-sm-2 control-label">End Date:</label>
           <div class="col-sm-10">
-            <input type="text" class="form-control" name="cohort" value="<%= @course["cohort"] %>">
+            <input type="date" class="form-control" name="end_date" value="<%= @course["end_date"] %>" placeholder="End Date">
           </div>
         </div>
-      <div class="form-group">
-        <div class="col-sm-offset-2 col-sm-10">
+        <div class="form-group">
+          <label for="input_intensive" class="col-sm-2 control-label">Intensive:</label>
+          <div class="col-sm-10">
+            <input type="boolean" class="form-control" name="intensive" value="<%= @course["intensive"] %>" placeholder="Intensive">
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-offset-2 col-sm-10">
           <button type="submit" class="btn btn-default">Submit <%= @course["name"] %> New Information</button>
+          </div>
         </div>
-      </div>
     </form>
 
   </div>
