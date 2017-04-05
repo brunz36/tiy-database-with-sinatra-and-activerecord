@@ -154,7 +154,11 @@ get '/append_course' do
 
   @course.update_attributes(params)
 
-  erb :show_course
+  if @course.valid?
+    redirect to("/show_course?id=#{@course.id}")
+  else
+    erb :edit_course
+  end
 end
 
 get '/delete_course' do

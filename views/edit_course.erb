@@ -48,11 +48,18 @@
     </div>
 
       <form class="form-horizontal" action="/append_course">
+        <% if @course.errors.any? %>
+          <div class="alert alert-danger" role="alert">
+            <strong>
+            <%= @course.errors.full_messages.join(" and ") %>
+            </strong>
+          </div>
+        <% end %>
         <input type="hidden" class="form-control" name="id" value="<%= @course["id"] %>">
-        <div class="form-group">
+        <div class="form-group <%= @course.errors[:name].any? ? "has-error" : "" %>">
           <label for="input_name" class="col-sm-2 control-label">Name:</label>
           <div class="col-sm-10">
-            <input type="text" class="form-control" name="name" value="<%= @course["name"] %>"placeholder="Name">
+            <input type="text" class="form-control" name="name" value="<%= @course["name"] %>" placeholder="Name">
           </div>
         </div>
         <div class="form-group">
@@ -73,10 +80,10 @@
             <input type="date" class="form-control" name="end_date" value="<%= @course["end_date"] %>" placeholder="End Date">
           </div>
         </div>
-        <div class="form-group">
+        <div class="form-group <%= @course.errors[:intensive].any? ? "has-error" : "" %>">
           <label for="input_intensive" class="col-sm-2 control-label">Intensive:</label>
           <div class="col-sm-10">
-            <input type="boolean" class="form-control" name="intensive" value="<%= @course["intensive"] %>" placeholder="Intensive">
+            <input type="text" class="form-control" name="intensive" value="<%= @course["intensive"] %>" placeholder="Intensive: True or False">
           </div>
         </div>
         <div class="form-group">
