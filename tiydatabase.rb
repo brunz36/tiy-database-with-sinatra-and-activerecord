@@ -62,10 +62,6 @@ end
 get '/search_employee' do
   search = params["search"]
 
-  if search == ""
-    redirect('/employees')
-  end
-
   @employees = Employee.where("name like ? or github = ? or slack = ?", "%#{search}%", search, search)
 
   if @employees.count < 1
