@@ -21,6 +21,8 @@ end
 
 class Course < ActiveRecord::Base
   self.primary_key = "id"
+  validates :name, presence: true
+  validates :intensive, inclusion: { in: [true, false] }
 end
 
 after do
@@ -124,13 +126,19 @@ get '/search_course' do
 end
 
 get '/new_course' do
+  @course = Course.new
+
   erb :new_course
 end
 
 get '/add_course' do
-  Course.create(params)
+  @course = Course.create(params)
 
-  redirect('/courses')
+  if @course.valid?
+    redirect('/courses')
+  else
+    erb :new_course
+  end
 end
 
 get '/edit_course' do
