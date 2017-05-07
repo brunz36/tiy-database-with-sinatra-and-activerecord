@@ -21,6 +21,7 @@ end
 
 class Course < ActiveRecord::Base
   self.primary_key = "id"
+  # has_one :employee
   validates :name, presence: true
   validates :intensive, inclusion: { in: [true, false] }
 end
