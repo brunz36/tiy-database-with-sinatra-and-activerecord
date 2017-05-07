@@ -13,4 +13,4 @@
   - SQL Manipulation
 
 ## DEMO
-![](https://raw.githubusercontent.com/brunz36/tiy-database-with-csv-and-enumerable-and-erb/master/docs/tiy-database_enumerable_and_erb.gif)
+![](https://raw.githubusercontent.com/brunz36/tiy-database-with-sinatra-and-activerecord/master/docs/tiy-database-with-sinatra-and-postgres-activerecord.gif)
